@@ -1,6 +1,19 @@
 {
   "name": "seadlng",
   "version": "0.0.1",
+  "homepage": "seadlng.herokuapp.com",
+  "bugs": {
+    "url": "https://github.com/seadlng/seadlng/issues"
+  },
+  "contributors": [
+    { "name": "Trevor Fenn", "web": "trevorfenn.info"},
+    { "name": "Bret Anderson"}
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seadlng/seadlng.git"
+  },
+  "license": "GPL-2.0",
   "dependencies": {
     "express": "~3.5.1",
     "lodash": "~2.4.1",
