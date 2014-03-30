@@ -471,6 +471,10 @@ module.exports = function (grunt) {
           'cd ..'
         ].join(' && ')
       }
+    },
+    bump: {
+      options: {},
+      files: [ 'package.json', 'bower.json' ]
     }
   });
 
@@ -572,7 +576,7 @@ module.exports = function (grunt) {
   grunt.registerTask('deploy', [
     'build',
     'shell:heroku'
-    ]);
+  ]);
 
   grunt.registerTask('default', [
     'newer:jshint',
