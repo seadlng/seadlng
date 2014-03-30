@@ -14,7 +14,7 @@ module.exports = function (grunt) {
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
-
+  grunt.loadNpmTasks('grunt-shell');
   // Define the configuration for all the tasks
   grunt.initConfig({
 
@@ -454,6 +454,24 @@ module.exports = function (grunt) {
       test: {
         NODE_ENV: 'test'
       }
+    },
+    shell: {                                
+      herokuDeploy: {
+        options: {
+          stdout: true
+        },
+        command: [
+          'cd <%= yeoman.dist %>',
+          'rm -rf .git',
+          'git init',
+          'git remote add heroku git@heroku.com:seadlng.git',
+          'git remote -v',
+          'git add --all',
+          'git commit -m "Autocommit"',
+          'git push heroku master --force',
+          'cd ..'
+        ].join(' && ')
+      }
     }
   });
 
@@ -551,6 +569,11 @@ module.exports = function (grunt) {
     grunt.log.warn('The `heroku` task has been deprecated. Use `grunt build` to build for deployment.');
     grunt.task.run(['build']);
   });
+
+  grunt.registerTask('deploy', [
+    'build',
+    'shell:heroku'
+    ]);
 
   grunt.registerTask('default', [
     'newer:jshint',
