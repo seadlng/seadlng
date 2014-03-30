@@ -5,6 +5,20 @@ module.exports = function(config) {
   config.set({
     // base path, that will be used to resolve files and exclude
     basePath: '',
+    preprocessors: {
+      '**/*.coffee': ['coffee']
+    },
+    coffeePreprocessor: {
+      // options passed to the coffee compiler
+      options: {
+        bare: true,
+        sourceMap: false
+      },
+      // transforming the filenames
+      transformPath: function(path) {
+        return path.replace(/\.coffee$/, '.js');
+      }
+    },
 
     // testing framework to use (jasmine/mocha/qunit/...)
     frameworks: ['jasmine'],
