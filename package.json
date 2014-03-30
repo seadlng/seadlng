@@ -1,6 +1,6 @@
 {
   "name": "seadlng",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "dependencies": {
     "express": "~3.5.1",
     "lodash": "~2.4.1",
@@ -59,7 +59,7 @@
     "grunt-nodemon": "~0.2.0",
     "open": "~0.0.4",
     "grunt-shell": "~0.6.4",
-    "angular-bootstrap": "~0.10.0"
+    "angular-bootstrap": "~0.0.4"
   },
   "engines": {
     "node": ">=0.10.0"
