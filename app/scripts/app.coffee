@@ -22,6 +22,9 @@ angular.module('seadlngApp', [
         templateUrl: 'partials/settings'
         controller: 'SettingsCtrl'
         authenticate: true
+      .when '/idea:id',
+        templateUrl: 'partials/idea',
+        controller: 'IdeaCtrl'
       .otherwise
         redirectTo: '/'
 
