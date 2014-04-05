@@ -11,14 +11,14 @@ describe 'Service: Idea', () ->
     $httpBackend = _$httpBackend_
     Idea = _Idea_
 
-  it 'should get a good idea', () ->
-    Idea.get(0).success (_idea_) ->
+  it 'should get a good idea', (ideaList) ->
+    Idea.get('533f5868fe0156a5203f1cbe').success (_idea_) ->
       goodIdea = _idea_
       $httpBackend.flush()
       expect(goodIdea.title).toBe "Good Idea"
 
-  it 'should get a bad idea', () ->
-    Idea.get(1).success (_idea_) ->
+  it 'should get a bad idea', (ideaList) ->
+    Idea.get('533f59d5c3808ecf21393c9b').success (_idea_) ->
       goodIdea = _idea_
       $httpBackend.flush()
       expect(goodIdea.title).toBe "Bad Idea"
