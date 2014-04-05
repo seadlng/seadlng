@@ -7,4 +7,7 @@ angular.module('seadlngApp')
     {
       get: (id) ->
         $http.get("/api/ideas/#{id}")
+
+      getAll: ->
+        $http.get("/api/ideas")
     }
