@@ -1,21 +1,21 @@
 div(ng-include='\'partials/navbar.html\'')
 .idea
-	h1 {{idea.title}}
-	.idea-summary {{idea.summary}}
-		.progress(ng-if='root !== undefined')
-			.progress-bar(style='width: {{idea.votePercent}}%;')
-	.root(ng-if='root !== undefined') 
-		h2 Root
-		a(href='/idea/{{root._id}}') {{root.title}}
-	.branches(ng-if='mergedBranches.length + unmergedBranches.length > 0')
-		h2 Branches
-		h3(ng-if='mergedBranches.length > 0') Merged
-		.mergedBranches(ng-repeat='branch in mergedBranches')
-			.branch 
-				a(href='/idea/{{branch._id}}') {{branch.title}}
-		h3(ng-if='unmergedBranches.length > 0') Unmerged
-		.unmergedBranches(ng-repeat='branch in unmergedBranches')
-			.branch
-				a(href='/idea/{{branch._id}}') {{branch.title}}
-				.progress.small
-					.progress-bar(style='width: {{branch.votePercent}}%;')
+  h1 {{idea.title}}
+  .idea-summary {{idea.summary}}
+    progressbar(ng-if='root !== undefined' max="100" value="idea.votePercent")
+  .root(ng-if='root !== undefined') 
+    h2 Root
+    a(href='/idea/{{root._id}}') {{root.title}}
+  .branches(ng-if='mergedBranches.length + unmergedBranches.length > 0')
+    h2 Branches
+    h3(ng-if='mergedBranches.length > 0') Merged
+    accordion.mergedBranches(close-others="true")
+      accordion-group.branch(ng-repeat='branch in mergedBranches' heading='{{branch.title}}')
+        p {{branch.summary}}
+        a(href='/idea/{{branch._id}}') Link
+    h3(ng-if='unmergedBranches.length > 0') Unmerged
+    accordion.unmergedBranches(close-others="true")
+      accordion-group.branch(ng-repeat='branch in unmergedBranches' heading='{{branch.title}}')
+        p {{branch.summary}}
+        a(href='/idea/{{branch._id}}') Link
+        progressbar.small(max="100" value="branch.votePercent")
