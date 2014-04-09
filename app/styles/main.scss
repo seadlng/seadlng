@@ -1,5 +1,9 @@
 $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
 
+/*======Variables and Mixins======*/
+$brand-primary: #7EA656;
+$brand-secondary: #8C765A;
+/*======End Variables and Mixins====*/
 @import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
 
 .browsehappy {
@@ -88,4 +92,18 @@ body {
     .jumbotron {
         border-bottom: 0;
     }
+}
+/*==========Ideas=============*/
+.idea {
+    margin: 0 auto;
+    padding: 16px 32px;
+    border: 2px solid $brand-secondary;
+    border-radius:10px;
+    h1 {
+        margin-top:0px;
+    }
+}
+.progress.small {
+    width:100px;
+    height:12px;
 }

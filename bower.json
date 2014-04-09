@@ -10,9 +10,7 @@
     "angular-resource": "1.2.11",
     "angular-cookies": "1.2.11",
     "angular-sanitize": "1.2.11",
-    "angular-route": "1.2.11",
-    "angular-bootstrap": "~0.10.0",
-    "angular-placeholders": "*"
+    "angular-route": "1.2.11"
   },
   "devDependencies": {
     "angular-mocks": "1.2.11",

@@ -1,3 +1,21 @@
 div(ng-include='\'partials/navbar.html\'')
-p This is the idea view. 
-p This is the id of the idea: {{idea._id}}
+.idea
+	h1 {{idea.title}}
+	.idea-summary {{idea.summary}}
+		.progress(ng-if='root !== undefined')
+			.progress-bar(style='width: {{idea.votePercent}}%;')
+	.root(ng-if='root !== undefined') 
+		h2 Root
+		a(href='/idea/{{root._id}}') {{root.title}}
+	.branches(ng-if='mergedBranches.length + unmergedBranches.length > 0')
+		h2 Branches
+		h3(ng-if='mergedBranches.length > 0') Merged
+		.mergedBranches(ng-repeat='branch in mergedBranches')
+			.branch 
+				a(href='/idea/{{branch._id}}') {{branch.title}}
+		h3(ng-if='unmergedBranches.length > 0') Unmerged
+		.unmergedBranches(ng-repeat='branch in unmergedBranches')
+			.branch
+				a(href='/idea/{{branch._id}}') {{branch.title}}
+				.progress.small
+					.progress-bar(style='width: {{branch.votePercent}}%;')
