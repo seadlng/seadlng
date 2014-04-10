@@ -8,6 +8,8 @@ angular.module('seadlngApp')
       get: (id) ->
         $http.get("/api/ideas/#{id}")
 
-      getAll: ->
-        $http.get("/api/ideas")
+      getAll: (page, per) ->
+        page = page-1 || 0
+        per = per || 15
+        $http.get("/api/ideas/page/#{page}/#{per}")
     }

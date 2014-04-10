@@ -1,33 +1,33 @@
 'use strict'
 
-angular.module('seadlngApp').controller 'IdeaCtrl', ($scope, $http, $routeParams, $route, $timeout, Idea, User) ->
-  getIdea = -> 
-    $scope.idea.votePercent = 0
-    for vote in $scope.idea.branch_status.votes
-      $scope.idea.votePercent += vote.weight*100 if vote.vote
+angular.module('seadlngApp').controller 'IdeaCtrl', ($scope, $http, $routeParams, $route, $timeout, $location, Idea, User) ->
+  getIdea = (idea) -> 
+    idea.votePercent = 0
+    for vote in idea.branch_status.votes
+      idea.votePercent += vote.weight*100 if vote.vote
       voted = true if $scope.user isnt undefined and $scope.user._id is vote.voter and vote.vote 
-    $scope.novote = voted
-    $scope.mergedBranches = []
-    $scope.unmergedBranches = []
-    for branch in $scope.idea.branches
+    idea.novote = voted
+    idea.mergedBranches = []
+    idea.unmergedBranches = []
+    for branch in idea.branches
       branch.votePercent = 0
       for vote in branch.branch_status.votes
         branch.votePercent += vote.weight*100 if vote.vote
       if branch.branch_status.isMerged
-        $scope.mergedBranches.push(branch)
+        idea.mergedBranches.push(branch)
       else
-        $scope.unmergedBranches.push(branch)
+        idea.unmergedBranches.push(branch)
   mergeIdea = ->
-    $http.put("/api/ideas/#{$scope.idea._id}/merge").success (data, status, headers, config) ->
+    $http.put("/api/ideas/#{idea._id}/merge").success (data, status, headers, config) ->
       mergeStatus = data
       $timeout (->
-        $scope.idea.branch_status.isMerged = mergeStatus
+        idea.branch_status.isMerged = mergeStatus
       ), 600
 
-  $scope.vote = ->
-    $http.put("/api/ideas/#{$scope.idea._id}/vote").success((data, status, headers, config) ->
-      $scope.idea.votePercent = data.weight  if data.weight isnt undefined
-      mergeIdea() if $scope.idea.votePercent >= 100
+  $scope.vote = (idea) ->
+    $http.put("/api/ideas/#{idea._id}/vote").success((data, status, headers, config) ->
+      idea.votePercent = data.weight  if data.weight isnt undefined
+      mergeIdea(idea) if idea.votePercent >= 100
     ).error (data, status, headers, config) ->
       if data.error isnt undefined
         $scope.alerts.push
@@ -40,8 +40,21 @@ angular.module('seadlngApp').controller 'IdeaCtrl', ($scope, $http, $routeParams
   $scope.closeAlert = (index) ->
     $scope.alerts.splice index, 1
 
+  $scope.switchPage = (newPage) ->
+    $location.path("/ideas/#{newPage}/#{$scope.ideasPer}")
+
   #Main
   $scope.user = User.get()
   window.user = $scope.user
-  $scope.idea = $route.current.locals.loadIdea.data
-  getIdea()
+  data = $route.current.locals.loadIdea.data
+  window.data = data
+  if data.dataTotal > 1
+    $scope.ideas = data.data
+  else 
+    $scope.ideas = [data.data]
+  for idea in $scope.ideas
+    getIdea(idea)
+  $scope.page = data.page
+  $scope.numPages = data.pages
+  $scope.totalIdeas = data.total
+  $scope.ideasPer = data.per
