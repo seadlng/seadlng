@@ -6,9 +6,9 @@ alert(ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)") 
     div(ng-if='(root !== undefined)&&(!idea.branch_status.isMerged)')
       progressbar(max="100" value="idea.votePercent")
       button.btn.btn-primary(ng-click='vote()' btn-checkbox ng-model='novote') Vote
-  .root(ng-if='root !== undefined') 
+  .root(ng-if='idea.root !== undefined') 
     h2 Root
-    a(href='/idea/{{root._id}}') {{root.title}}
+    a(href='/idea/{{idea.root._id}}') {{idea.root.title}}
   .branches(ng-if='mergedBranches.length + unmergedBranches.length > 0')
     h2 Branches
     h3(ng-if='mergedBranches.length > 0') Merged

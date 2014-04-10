@@ -2,26 +2,22 @@
 
 angular.module('seadlngApp').controller 'IdeaCtrl', ($scope, $http, $routeParams, $route, Idea, User) ->
   getIdea = -> 
-    if $scope.idea.root != undefined
-      Idea.get($scope.idea.root).success (_root_) ->
-        $scope.root = _root_
-      $scope.idea.votePercent = 0
-      for vote in $scope.idea.branch_status.votes
-        $scope.idea.votePercent += vote.weight*100 if vote.vote
-        voted = true if $scope.user isnt undefined and $scope.user._id is vote.voter and vote.vote 
-      $scope.novote = voted
+    $scope.idea.votePercent = 0
+    for vote in $scope.idea.branch_status.votes
+      $scope.idea.votePercent += vote.weight*100 if vote.vote
+      voted = true if $scope.user isnt undefined and $scope.user._id is vote.voter and vote.vote 
+    $scope.novote = voted
     $scope.mergedBranches = []
     $scope.unmergedBranches = []
     for branch in $scope.idea.branches
-      Idea.get(branch).success (_branch_) ->
-        _branch_.votePercent = 0
-        for vote in _branch_.branch_status.votes
-          _branch_.votePercent += vote.weight*100 if vote.vote
-        if _branch_.branch_status.isMerged
-          $scope.mergedBranches.push(_branch_)
-        else
-          $scope.unmergedBranches.push(_branch_)
-  this.mergeIdea = ->
+      branch.votePercent = 0
+      for vote in branch.branch_status.votes
+        branch.votePercent += vote.weight*100 if vote.vote
+      if branch.branch_status.isMerged
+        $scope.mergedBranches.push(branch)
+      else
+        $scope.unmergedBranches.push(branch)
+  mergeIdea = ->
     $http.put("/api/ideas/#{$scope.idea._id}/merge").success (data, status, headers, config) ->
       $scope.idea = data
       getIdea()
@@ -34,7 +30,6 @@ angular.module('seadlngApp').controller 'IdeaCtrl', ($scope, $http, $routeParams
         $scope.alerts.push
           type: "danger"
           msg: data.error
-
         console.log data.error
       return
  
