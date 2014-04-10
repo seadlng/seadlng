@@ -2,7 +2,7 @@ div(ng-include='\'partials/navbar.html\'')
 .idea
   h1 {{idea.title}}
   .idea-summary {{idea.summary}}
-    progressbar(ng-if='root !== undefined' max="100" value="idea.votePercent")
+    progressbar(ng-if='(root !== undefined)&&(!idea.branch_status.isMerged)' max="100" value="idea.votePercent")
   .root(ng-if='root !== undefined') 
     h2 Root
     a(href='/idea/{{root._id}}') {{root.title}}
