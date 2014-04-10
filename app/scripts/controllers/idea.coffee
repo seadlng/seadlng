@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('seadlngApp').controller 'IdeaCtrl', ($scope, $http, $routeParams, $route, Idea, User) ->
+angular.module('seadlngApp').controller 'IdeaCtrl', ($scope, $http, $routeParams, $route, $timeout, Idea, User) ->
   getIdea = -> 
     $scope.idea.votePercent = 0
     for vote in $scope.idea.branch_status.votes
@@ -19,8 +19,11 @@ angular.module('seadlngApp').controller 'IdeaCtrl', ($scope, $http, $routeParams
         $scope.unmergedBranches.push(branch)
   mergeIdea = ->
     $http.put("/api/ideas/#{$scope.idea._id}/merge").success (data, status, headers, config) ->
-      $scope.idea = data
-      getIdea()
+      mergeStatus = data
+      $timeout (->
+        $scope.idea.branch_status.isMerged = mergeStatus
+      ), 600
+
   $scope.vote = ->
     $http.put("/api/ideas/#{$scope.idea._id}/vote").success((data, status, headers, config) ->
       $scope.idea.votePercent = data.weight  if data.weight isnt undefined

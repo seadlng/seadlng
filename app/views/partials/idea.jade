@@ -2,21 +2,23 @@ div(ng-include='\'partials/navbar.html\'')
 alert(ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)") {{alert.msg}}
 .idea
   h1 {{idea.title}}
+    span.mergeStatus(ng-show='idea.root' ng-class='{merged: idea.branch_status.isMerged}') 
+      | {{idea.branch_status.isMerged? "Merged" : "Unmerged"}}
   .idea-summary {{idea.summary}}
-    div(ng-if='(root !== undefined)&&(!idea.branch_status.isMerged)')
+    div(ng-show='(idea.root)&&(!idea.branch_status.isMerged)' ng-animate=" 'animate' ")
       progressbar(max="100" value="idea.votePercent")
       button.btn.btn-primary(ng-click='vote()' btn-checkbox ng-model='novote') Vote
-  .root(ng-if='idea.root !== undefined') 
+  .root(ng-show='idea.root') 
     h2 Root
     a(href='/idea/{{idea.root._id}}') {{idea.root.title}}
-  .branches(ng-if='mergedBranches.length + unmergedBranches.length > 0')
+  .branches(ng-show='mergedBranches.length + unmergedBranches.length > 0')
     h2 Branches
-    h3(ng-if='mergedBranches.length > 0') Merged
+    h3(ng-show='mergedBranches.length > 0') Merged
     accordion.mergedBranches(close-others="true")
       accordion-group.branch(ng-repeat='branch in mergedBranches' heading='{{branch.title}}')
         p {{branch.summary}}
         a(href='/idea/{{branch._id}}') Link
-    h3(ng-if='unmergedBranches.length > 0') Unmerged
+    h3(ng-show='unmergedBranches.length > 0') Unmerged
     accordion.unmergedBranches(close-others="true")
       accordion-group.branch(ng-repeat='branch in unmergedBranches' heading='{{branch.title}}')
         p {{branch.summary}}

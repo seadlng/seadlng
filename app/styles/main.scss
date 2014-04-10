@@ -102,6 +102,19 @@ body {
     h1 {
         margin-top:0px;
     }
+    .mergeStatus {
+        font-size: .4em;
+        color: white;
+        padding:3px 6px;
+        border-radius:4px;
+        background-color:$brand-primary;
+        vertical-align: middle;
+        margin-left: 12px;
+        transition: background-color 1s;
+        &.merged {
+            background-color:$brand-secondary;
+        }
+    }
 }
 .progress.small {
     width:100px;
