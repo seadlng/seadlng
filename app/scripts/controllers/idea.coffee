@@ -20,3 +20,19 @@ angular.module('seadlngApp').controller 'IdeaCtrl', ($scope, $http, $routeParams
           $scope.mergedBranches.push(_branch_)
         else
           $scope.unmergedBranches.push(_branch_)
+  $scope.vote = ->
+    $http.put("/api/ideas/#{$scope.idea._id}/vote").success((data, status, headers, config) ->
+      $scope.idea.votePercent = data.weight  if data.weight isnt undefined
+      return
+    ).error (data, status, headers, config) ->
+      if data.error isnt undefined
+        $scope.alerts.push
+          type: "danger"
+          msg: data.error
+
+        console.log data.error
+      return
+
+  $scope.alerts = []
+  $scope.closeAlert = (index) ->
+    $scope.alerts.splice index, 1
