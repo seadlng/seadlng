@@ -31,6 +31,8 @@ module.exports = function(config) {
       'app/bower_components/angular-cookies/angular-cookies.js',
       'app/bower_components/angular-sanitize/angular-sanitize.js',
       'app/bower_components/angular-route/angular-route.js',
+      'app/bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap.js',
+      'app/bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js',
       'app/scripts/*.coffee',
       'app/scripts/**/*.coffee',
       'test/**/mock/**/*.coffee',

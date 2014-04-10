@@ -11,11 +11,11 @@ describe 'Controller: IdeaCtrl(Good Idea)', () ->
 
   routeParamsStub = jasmine.createSpy('routeParamsStub')
   routeParamsStub.id = 0
-
+###
   # Initialize the controller and a mock scope
   beforeEach inject (_$httpBackend_, $controller, $rootScope) ->
     $httpBackend = _$httpBackend_
-    $httpBackend.expectGET('/api/ideas/0').respond {_id: 0,title: "Good Idea",summary: "Good Idea summary"}
+    $httpBackend.expectGET('/api/ideas/0').respond {data: [{_id: 0,title: "Good Idea",summary: "Good Idea summary"}]}
     scope = $rootScope.$new()
     routeParams = 
     IdeaCtrl = $controller 'IdeaCtrl', {
@@ -24,10 +24,10 @@ describe 'Controller: IdeaCtrl(Good Idea)', () ->
     }
 
   it 'should attach a good idea to the scope', () ->
-    expect(scope.idea).toBeUndefined()
+    expect(scope.ideas).toBeUndefined()
     $httpBackend.flush()
-    expect(scope.idea._id).toBe 0
-    expect(scope.idea.title).toBe "Good Idea"
+    expect(scope.ideas[0]._id).toBe 0
+    expect(scope.ideas[0].title).toBe "Good Idea"
 
 describe 'Controller: IdeaCtrl(Bad Idea)', () ->
 
@@ -57,3 +57,4 @@ describe 'Controller: IdeaCtrl(Bad Idea)', () ->
     $httpBackend.flush()
     expect(scope.idea._id).toBe 1
     expect(scope.idea.title).toBe "Bad Idea"
+###
