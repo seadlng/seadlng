@@ -25,7 +25,11 @@ angular.module('seadlngApp', [
         authenticate: true
       .when '/idea/:id',
         templateUrl: 'partials/idea',
-        controller: 'IdeaCtrl'
+        controller: 'IdeaCtrl',
+        resolve: { 
+          loadIdea: (Idea, $route) ->
+            Idea.get($route.current.params.id)
+        } 
       .otherwise
         redirectTo: '/'
 
