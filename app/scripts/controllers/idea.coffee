@@ -9,8 +9,8 @@ angular.module('seadlngApp').controller 'IdeaCtrl', ($scope, $http, $routeParams
           $scope.root = _root_
         $scope.idea.votePercent = 0
         for vote in $scope.idea.branch_status.votes
-          $scope.idea.votePercent += vote.weight*100
-          voted = true if $scope.user isnt undefined and $scope.user._id is vote.voter 
+          $scope.idea.votePercent += vote.weight*100 if vote.vote
+          voted = true if $scope.user isnt undefined and $scope.user._id is vote.voter and vote.vote 
         $scope.novote = voted
       $scope.mergedBranches = []
       $scope.unmergedBranches = []
