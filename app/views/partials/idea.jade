@@ -1,10 +1,11 @@
 div(ng-include='\'partials/navbar.html\'')
-alert(ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)"){{alert.msg}}
+alert(ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)") {{alert.msg}}
 .idea
   h1 {{idea.title}}
   .idea-summary {{idea.summary}}
-    progressbar(ng-if='(root !== undefined)&&(!idea.branch_status.isMerged)' max="100" value="idea.votePercent")
-    button(ng-click='vote()') Vote
+    div(ng-if='(root !== undefined)&&(!idea.branch_status.isMerged)')
+      progressbar(max="100" value="idea.votePercent")
+      button.btn.btn-primary(ng-click='vote()' btn-checkbox ng-model='novote') Vote
   .root(ng-if='root !== undefined') 
     h2 Root
     a(href='/idea/{{root._id}}') {{root.title}}
