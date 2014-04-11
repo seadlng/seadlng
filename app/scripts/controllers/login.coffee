@@ -4,6 +4,8 @@ angular.module('seadlngApp')
   .controller 'LoginCtrl', ($scope, Auth, $location) ->
     $scope.user = {}
     $scope.errors = {}
+    path = $location.search().r
+    $scope.redirect = "?r=#{path}"
 
     $scope.login = (form) ->
       $scope.submitted = true
@@ -14,7 +16,8 @@ angular.module('seadlngApp')
           password: $scope.user.password
         )
         .then ->
-          window.history.back()
+          $location.path if path then path else '/'
+          $location.search('r',null)
           # Logged in, redirect to home
           #$location.path '/'
         .catch (err) ->

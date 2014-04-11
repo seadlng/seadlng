@@ -4,6 +4,8 @@ angular.module('seadlngApp')
   .controller 'SignupCtrl', ($scope, Auth, $location) ->
     $scope.user = {}
     $scope.errors = {}
+    path = $location.search().r
+    $scope.redirect = "?r=#{path}"
     
     $scope.register = (form) ->
       $scope.submitted = true
@@ -14,8 +16,10 @@ angular.module('seadlngApp')
           email: $scope.user.email
           password: $scope.user.password
         ).then( ->
+          $location.path if path then path else '/'
+          $location.search('r',null)
           # Account created, redirect to home
-          $location.path '/'
+          #$location.path '/'
         ).catch( (err) ->
           err = err.data
           $scope.errors = {}
