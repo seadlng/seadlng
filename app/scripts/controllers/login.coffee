@@ -14,8 +14,9 @@ angular.module('seadlngApp')
           password: $scope.user.password
         )
         .then ->
+          window.history.back()
           # Logged in, redirect to home
-          $location.path '/'
+          #$location.path '/'
         .catch (err) ->
           err = err.data;
           $scope.errors.other = err.message;
