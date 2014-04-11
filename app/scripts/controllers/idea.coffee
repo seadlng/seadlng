@@ -4,15 +4,15 @@ angular.module('seadlngApp').controller 'IdeaCtrl', ($scope, $http, $routeParams
   getIdea = (idea) -> 
     idea.votePercent = 0
     for vote in idea.branch_status.votes
-      idea.votePercent += vote.weight*100 if vote.vote
-      voted = true if $scope.user isnt undefined and $scope.user._id is vote.voter and vote.vote 
+      idea.votePercent += vote.weight*100
+      voted = true if $scope.user isnt undefined and $scope.user._id is vote.voter
     idea.novote = voted
     idea.mergedBranches = []
     idea.unmergedBranches = []
     for branch in idea.branches
       branch.votePercent = 0
       for vote in branch.branch_status.votes
-        branch.votePercent += vote.weight*100 if vote.vote
+        branch.votePercent += vote.weight*100
       if branch.branch_status.isMerged
         idea.mergedBranches.push(branch)
       else
