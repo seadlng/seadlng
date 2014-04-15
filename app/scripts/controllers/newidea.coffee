@@ -7,7 +7,8 @@ angular.module('seadlngApp')
       'AngularJS'
       'Karma'
     ]
-
+    
+    $scope.idea = {}
     $scope.submit = ->
 
       error = $scope.error.title = true unless $scope.idea.title.length > 0
