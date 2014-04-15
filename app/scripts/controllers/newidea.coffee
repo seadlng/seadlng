@@ -15,12 +15,13 @@ $scope.submit = ->
   error = $scope.error.tags = true unless $scope.idea.tags.length > 0
     
   $scope.idea.tags = (tag.trim() for tag in $scope.tags.split ",")
-
-  $http.post("/api/ideas/new",$scope.idea).success((data, status, headers, config) ->
-    #do stuff
-  ).error (data, status, headers, config) ->
-    if data.error isnt undefined
-      $scope.alerts.push
-        type: "danger"
-        msg: data.error
-      console.log data.error
+  
+  if not error    
+    $http.post("/api/ideas/new",$scope.idea).success((data, status, headers, config) ->
+      $location.path "/idea/#{data._id}"
+    ).error (data, status, headers, config) ->
+      if data.error isnt undefined
+        $scope.alerts.push
+          type: "danger"
+          msg: data.error
+        console.log data.error
