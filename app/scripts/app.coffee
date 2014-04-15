@@ -38,7 +38,7 @@ angular.module('seadlngApp', [
             Idea.getAll($route.current.params.page,$route.current.params.per)
         }
       .when '/idea/new',
-        templateUrl: 'partials/idea/new',
+        templateUrl: 'partials/newidea',
         controller: 'IdeaCtrl'
       .otherwise
         redirectTo: '/'
