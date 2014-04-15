@@ -575,7 +575,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('deploy', [
     'build',
-    'shell:heroku'
+    'shell:herokuDeploy'
   ]);
 
   grunt.registerTask('default', [
