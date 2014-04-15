@@ -11,8 +11,8 @@ angular.module('seadlngApp')
     $scope.idea = {
       title: "",
       summary: ""
-      $scope.tags: ""
     }
+    $scope.tags =  ""
     $scope.error = {}
     $scope.submit = ->
 
