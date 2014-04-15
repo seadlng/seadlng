@@ -8,6 +8,9 @@ angular.module('seadlngApp')
     , 
       title: 'Settings'
       link: '/settings'
+    ,
+      title: 'New Idea'
+      link: '/idea/new'
     ]
     $scope.redirect = "?r=#{$location.search().r}"
     current_location = $location.path()
