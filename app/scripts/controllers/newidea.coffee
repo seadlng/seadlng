@@ -10,8 +10,8 @@ angular.module('seadlngApp')
     
     $scope.idea = {
       title: "",
-      summary: "",
-      tags: ""
+      summary: ""
+      $scope.tags: ""
     }
     $scope.error = {}
     $scope.submit = ->
