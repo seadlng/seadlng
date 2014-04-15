@@ -46,6 +46,7 @@ angular.module('seadlngApp').controller 'IdeaCtrl', ($scope, $http, $routeParams
   #Main
   $scope.user = User.get()
   window.user = $scope.user
+  console.log($route)
   data = $route.current.locals.loadIdea.data
   window.data = data
   if data.dataTotal > 1

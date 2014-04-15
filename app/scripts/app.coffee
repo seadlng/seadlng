@@ -25,7 +25,7 @@ angular.module('seadlngApp', [
         authenticate: true
       .when '/idea/new',
         templateUrl: 'partials/newidea',
-        controller: 'IdeaCtrl'
+        controller: 'NewIdeaCtrl'
       .when '/idea/:id',
         templateUrl: 'partials/idea',
         controller: 'IdeaCtrl',
