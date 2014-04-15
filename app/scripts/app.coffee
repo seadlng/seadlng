@@ -23,6 +23,9 @@ angular.module('seadlngApp', [
         templateUrl: 'partials/settings'
         controller: 'SettingsCtrl'
         authenticate: true
+      .when '/idea/new',
+        templateUrl: 'partials/newidea',
+        controller: 'IdeaCtrl'
       .when '/idea/:id',
         templateUrl: 'partials/idea',
         controller: 'IdeaCtrl',
@@ -37,9 +40,6 @@ angular.module('seadlngApp', [
           loadIdea: (Idea, $route) ->
             Idea.getAll($route.current.params.page,$route.current.params.per)
         }
-      .when '/idea/new',
-        templateUrl: 'partials/newidea',
-        controller: 'IdeaCtrl'
       .otherwise
         redirectTo: '/'
 
