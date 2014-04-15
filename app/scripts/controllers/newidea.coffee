@@ -10,10 +10,9 @@ angular.module('seadlngApp')
 
 $scope.submit = ->
   
-  if $scope.title.length == 0
-    $scope.error.title = error = true
-  else $scope.error.title = error = false
-    
+  error = $scope.error.title = true unless $scope.idea.title.length > 0
+  error = $scope.error.summary = true unless $scope.idea.summary.length > 0
+  error = $scope.error.tags = true unless $scope.idea.tags.length > 0
     
   $scope.idea.tags = (tag.trim() for tag in $scope.tags.split ",")
 
