@@ -1,7 +1,7 @@
 div(ng-include='\'partials/navbar.html\'')
 alert(ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)") {{alert.msg}}
 h1 Submit New Idea
-form.form(name='form', ng-submit='submit', novalidate='novalidate')
+form.form(name='form', ng-submit='submit()', novalidate='novalidate')
 
       .form-group(ng-class='{"has-error": error.title}')
         label Title
