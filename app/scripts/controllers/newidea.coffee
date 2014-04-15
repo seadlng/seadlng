@@ -18,7 +18,7 @@ angular.module('seadlngApp')
 
       error = $scope.error.title = true unless $scope.idea.title.length > 0
       error = $scope.error.summary = true unless $scope.idea.summary.length > 0
-      error = $scope.error.tags = true unless $scope.idea.tags.length > 0
+      error = $scope.tags = true unless $scope.idea.tags.length > 0
 
       $scope.idea.tags = (tag.trim() for tag in $scope.tags.split ",")
 
