@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('seadlngApp')
-  .controller 'NewIdeaCtrl', ($scope, $http. $location) ->
+  .controller 'NewIdeaCtrl', ($scope, $http, $location) ->
     $scope.awesomeThings = [
       'HTML5 Boilerplate'
       'AngularJS'
