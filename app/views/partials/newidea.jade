@@ -1,28 +1,23 @@
 div(ng-include='\'partials/navbar.html\'')
 alert(ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)") {{alert.msg}}
 h1 Submit New Idea
-form.form(name='form', ng-submit='login(form)', novalidate='novalidate')
+form.form(name='form', ng-submit='submit', novalidate='novalidate')
 
-      .form-group
+      .form-group(ng-class='haserror: error.title')
         label Title
         input.form-control(type='text', name='title', ng-model='idea.title')
 
-      .form-group
+      .form-group(ng-class='haserror: error.summary')
         label Summary
         input.form-control(type='text', name='summary', ng-model='idea.summary')
         
-      .form-group
+      .form-group(ng-class='haserror: error.tags')
         label Tags
         input.form-control(type='text', name='tags', ng-model='tags')
 
-      .form-group
+      .form-group(ng-class='haserror: error.root')
         label Root Idea
         input.form-control(type='text', name='root', ng-model='idea.root')
-
-      .form-group.has-error
-        p.help-block(ng-show='form.email.$error.required && form.password.$error.required && submitted')
-          | Please enter your email and password.
-        p.help-block {{ errors.other }}
 
       button.btn.btn-lg.btn-primary(type='submit')  Submit 
       span.clearfix
