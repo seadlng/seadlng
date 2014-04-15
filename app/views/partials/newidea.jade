@@ -15,7 +15,7 @@ form.form(name='form', ng-submit='submit()', novalidate='novalidate')
         label Tags
         input.form-control(type='text', name='tags', ng-model='tags')
 
-      .form-group
+      .form-group(ng-if="false")
         label Root Idea
         input.form-control(type='text', name='root', ng-model='idea.root')
 
