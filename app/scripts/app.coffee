@@ -39,11 +39,7 @@ angular.module('seadlngApp', [
         }
       .when '/idea/new',
         templateUrl: 'partials/idea/new',
-        controller: 'IdeaCtrl',
-        resolve: { 
-          loadIdea: (Idea, $route) ->
-            Idea.get($route.current.params.id)
-        }
+        controller: 'IdeaCtrl'
       .otherwise
         redirectTo: '/'
 
