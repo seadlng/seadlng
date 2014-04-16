@@ -33,6 +33,7 @@ module.exports = function(config) {
       'app/bower_components/angular-route/angular-route.js',
       'app/bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap.js',
       'app/bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js',
+      'app/bower_components/angular-elastic/elastic.js',
       'app/scripts/*.coffee',
       'app/scripts/**/*.coffee',
       'test/**/mock/**/*.coffee',
