@@ -25,10 +25,13 @@ alert(ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)") 
         a(href='/idea/{{branch._id}}') Link
         progressbar.small(max="100" value="branch.votePercent")
   .comments(ng-if="single")
+    h3 Comments
     .comment(ng-repeat="comment in comments")
-      .comment-content {{coment.comment}}
-      .comment-owner {{comment.owner.profile.name}}
-      .comment-date {{comment.created | date: 'short'}}
+      .comment-content {{comment.comment}}
+      .comment-owner 
+        img(src="http://gravacat.trevorfenn.info/{{comment.profile.emailHash}}")
+        a(href="/user/{{comment.owner}}") {{comment.profile.name}}
+      .comment-date &nbsp;&nbsp;&mdash;&nbsp;&nbsp;{{comment.created | date: 'short'}}
     form(role="form")
       .form-group
         textarea.form-control(rows="2" msd-elastic ng-model="newComment.comment" ng-if="newComment.active")

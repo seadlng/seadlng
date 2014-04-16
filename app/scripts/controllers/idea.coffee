@@ -28,10 +28,14 @@ angular.module('seadlngApp').controller 'IdeaCtrl', ($scope, $http, $routeParams
   commentSuccess = (data, status, headers, config) ->
     $scope.newComment.comment = ""
     $scope.newComment.active = false
+    $scope.comments = data
+    for comment in $scope.comments
+      getCommentOwner(comment)
 
   getCommentOwner = (comment) ->
-    $http.get("/api/users/#{comment.owner}").success (data, status, headers, config) ->
-      comment.owner = data
+    unless comment.profile
+      $http.get("/api/users/#{comment.owner}").success (data, status, headers, config) ->
+        comment.profile = data.profile
 
   httpError = (data, status, headers, config) ->
     if data.error isnt undefined

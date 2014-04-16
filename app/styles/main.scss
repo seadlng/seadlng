@@ -135,3 +135,26 @@ body {
     margin-top: 12px;
     padding: 3px 6px;
 }
+.comment {
+    border-color: gray;
+    border-top: 1px dotted;
+    line-height:32px;
+    padding-left:24px;
+    padding-right:24px;
+    > div {
+        display:inline-block;
+    }
+    .comment-owner {
+        margin-left:12px;
+        img {
+            width:24px;
+            margin-right:8px;
+        }
+    }
+    .comment-date {
+        color:#666;
+    }
+    &:last-of-type {
+        border-bottom: 1px dotted;
+    }
+}
