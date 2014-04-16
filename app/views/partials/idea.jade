@@ -27,12 +27,16 @@ alert(ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)") 
   .comments(ng-if="single")
     h3 Comments
     .comment(ng-repeat="comment in comments")
-      .comment-content {{comment.comment}}
+      .comment-content(ng-if="!comment.editing") {{comment.comment}}
+      textarea(msd-elastic rows="1" ng-if="comment.editing" ng-model="comment.comment" ng-change="comment.change()")
       .comment-owner 
         img(src="http://gravacat.trevorfenn.info/{{comment.profile.emailHash}}")
         a(href="/user/{{comment.owner}}") {{comment.profile.name}}
       .comment-date &nbsp;&nbsp;&mdash;&nbsp;&nbsp;{{comment.created | date: 'short'}}
-    form(role="form")
+      .comment-edited(ng-if="comment.edited") edited
+      a.comment-edit(ng-if="comment.editable" ng-click="comment.edit()") {{comment.editStatus}}
+      a.comment-edit(ng-if="comment.editable && comment.editStatus == 'submit'" ng-click="comment.cancel()") cancel
+    form.new-comment(role="form")
       .form-group
         textarea.form-control(rows="2" msd-elastic ng-model="newComment.comment" ng-if="newComment.active")
         .comment-btns

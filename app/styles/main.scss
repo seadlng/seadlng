@@ -141,8 +141,17 @@ body {
     line-height:32px;
     padding-left:24px;
     padding-right:24px;
+    textarea {
+        line-height:1.4em;
+        width:100%;
+        margin-top:12px;
+    }
     > div {
         display:inline-block;
+    }
+    .comment-content {
+        line-height:1.4em;
+        margin-top:6px;
     }
     .comment-owner {
         margin-left:12px;
@@ -157,4 +166,15 @@ body {
     &:last-of-type {
         border-bottom: 1px dotted;
     }
+    .comment-edit {
+        margin-left:12px;
+        cursor:pointer;
+    }
+    .comment-edited {
+        margin-left:12px;
+        color:#888;
+    }
+}
+.new-comment {
+    margin-top:12px;
 }

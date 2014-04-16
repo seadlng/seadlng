@@ -28,14 +28,42 @@ angular.module('seadlngApp').controller 'IdeaCtrl', ($scope, $http, $routeParams
   commentSuccess = (data, status, headers, config) ->
     $scope.newComment.comment = ""
     $scope.newComment.active = false
-    $scope.comments = data
-    for comment in $scope.comments
-      getCommentOwner(comment)
+    data.created = Date.now()
+    data.updated = data.created
+    getComment(data)
+    $scope.comments.push(data)
 
-  getCommentOwner = (comment) ->
+  getComment = (comment) ->
     unless comment.profile
       $http.get("/api/users/#{comment.owner}").success (data, status, headers, config) ->
         comment.profile = data.profile
+        comment.editable = comment.owner == $scope.user._id
+        comment.editStatus = "edit"
+        comment.edited = comment.created != comment.updated
+        comment.edit = ->
+          comment.editing = !comment.editing
+          if comment.editing
+            comment.original = comment.comment
+            comment.editStatus = "cancel"
+          else
+            comment.editStatus = "edit"
+            if comment.original != comment.comment
+              commentData = {
+                comment: comment.comment,
+                commentId: comment._id
+              }
+              $http.put("/api/ideas/#{$scope.ideas[0]._id}/comment",commentData).success((data, status, headers, config) ->
+                comment.edited = true
+              ).error(httpError)
+
+        comment.change = ->
+          if comment.original == comment.comment
+            comment.editStatus = "cancel"
+          else
+            comment.editStatus = "submit"
+        comment.cancel = ->
+          comment.comment = comment.original
+          comment.edit()
 
   httpError = (data, status, headers, config) ->
     if data.error isnt undefined
@@ -71,7 +99,7 @@ angular.module('seadlngApp').controller 'IdeaCtrl', ($scope, $http, $routeParams
     $scope.ideas = [data.data]
     $scope.comments = data.data.comments
     for comment in $scope.comments
-      getCommentOwner(comment)
+      getComment(comment)
     $scope.newComment.submit = ->
       $http.put("/api/ideas/#{data.data._id}/comment",$scope.newComment).success(commentSuccess).error(httpError) 
   for idea in $scope.ideas
