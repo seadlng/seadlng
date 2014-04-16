@@ -17,6 +17,7 @@ angular.module('seadlngApp').controller 'IdeaCtrl', ($scope, $http, $routeParams
         idea.mergedBranches.push(branch)
       else
         idea.unmergedBranches.push(branch)
+
   mergeIdea = (idea) ->
     $http.put("/api/ideas/#{idea._id}/merge").success (data, status, headers, config) ->
       mergeStatus = data
@@ -24,19 +25,27 @@ angular.module('seadlngApp').controller 'IdeaCtrl', ($scope, $http, $routeParams
         idea.branch_status.isMerged = mergeStatus
       ), 600
 
+  commentSuccess = (data, status, headers, config) ->
+    $scope.newComment.comment = ""
+    $scope.newComment.active = false
+
+  getCommentOwner = (comment) ->
+    $http.get("/api/users/#{comment.owner}").success (data, status, headers, config) ->
+      comment.owner = data
+
+  httpError = (data, status, headers, config) ->
+    if data.error isnt undefined
+      $scope.alerts.push
+        type: "danger"
+        msg: data.error
+      console.log data.error
+
   $scope.vote = (idea) ->
     $http.put("/api/ideas/#{idea._id}/vote").success((data, status, headers, config) ->
       idea.votePercent = data.weight  if data.weight isnt undefined
       mergeIdea(idea) if idea.votePercent >= 100
-    ).error (data, status, headers, config) ->
-      if data.error isnt undefined
-        $scope.alerts.push
-          type: "danger"
-          msg: data.error
-        console.log data.error
-      return
+    ).error(httpError)
  
-  $scope.alerts = []
   $scope.closeAlert = (index) ->
     $scope.alerts.splice index, 1
 
@@ -45,14 +54,22 @@ angular.module('seadlngApp').controller 'IdeaCtrl', ($scope, $http, $routeParams
 
   #Main
   $scope.user = User.get()
-  window.user = $scope.user
-  console.log($route)
+  $scope.alerts = []
+  $scope.newComment = {
+    active: false
+    comment: ""
+  }
   data = $route.current.locals.loadIdea.data
-  window.data = data
   if data.dataTotal > 1
     $scope.ideas = data.data
   else 
+    $scope.single = true
     $scope.ideas = [data.data]
+    $scope.comments = data.data.comments
+    for comment in $scope.comments
+      getCommentOwner(comment)
+    $scope.newComment.submit = ->
+      $http.put("/api/ideas/#{data.data._id}/comment",$scope.newComment).success(commentSuccess).error(httpError) 
   for idea in $scope.ideas
     getIdea(idea)
   $scope.page = data.page

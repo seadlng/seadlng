@@ -5,7 +5,8 @@ angular.module('seadlngApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'monospaced.elastic'
 ])
   .config ($routeProvider, $locationProvider, $httpProvider) ->
     $routeProvider

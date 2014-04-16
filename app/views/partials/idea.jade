@@ -24,4 +24,15 @@ alert(ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)") 
         p {{branch.summary}}
         a(href='/idea/{{branch._id}}') Link
         progressbar.small(max="100" value="branch.votePercent")
+  .comments(ng-if="single")
+    .comment(ng-repeat="comment in comments")
+      .comment-content {{coment.comment}}
+      .comment-owner {{comment.owner.profile.name}}
+      .comment-date {{comment.created | date: 'short'}}
+    form(role="form")
+      .form-group
+        textarea.form-control(rows="2" msd-elastic ng-model="newComment.comment" ng-if="newComment.active")
+        .comment-btns
+          button.btn.btn-comment.btn-primary(ng-click="newComment.submit()" ng-if="newComment.active") Submit
+          button.btn.btn-comment(ng-click="newComment.active = !newComment.active" ng-class="newComment.active ? 'btn-danger' : 'btn-primary'") {{newComment.active ? "Cancel" : "Comment"}}
 pagination(ng-if="numPages > 1" total-items="totalIdeas" page="page" max-size="5" class="pagination-sm" boundary-links="true" rotate="true" items-per-page="ideasPer" on-select-page = "switchPage(page)")

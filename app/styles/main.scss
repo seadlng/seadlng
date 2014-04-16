@@ -126,3 +126,12 @@ body {
 .pagination li {
     cursor:pointer;
 }
+.comment-btns {
+    text-align:right;
+}
+.btn-comment {
+    display: inline-block;
+    margin-left: 12px;
+    margin-top: 12px;
+    padding: 3px 6px;
+}
