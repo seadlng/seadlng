@@ -26,7 +26,7 @@ alert(ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)") 
         progressbar.small(max="100" value="branch.votePercent")
   .comments(ng-if="single")
     h3 Comments
-    .comment(ng-repeat="comment in comments")
+    .comment(ng-repeat="comment in comments" ng-class="{deleted: comment.deleted}")
       .comment-content(ng-if="!comment.editing") {{comment.comment}}
       textarea(msd-elastic rows="1" ng-if="comment.editing" ng-model="comment.comment" ng-change="comment.change()")
       .comment-owner 
@@ -36,6 +36,7 @@ alert(ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)") 
       .comment-edited(ng-if="comment.edited") edited
       a.comment-edit(ng-if="comment.editable" ng-click="comment.edit()") {{comment.editStatus}}
       a.comment-edit(ng-if="comment.editable && comment.editStatus == 'submit'" ng-click="comment.cancel()") cancel
+      a.comment-edit(ng-if="comment.deleteable" ng-click="comment.delete()") delete
     form.new-comment(role="form")
       .form-group
         textarea.form-control(rows="2" msd-elastic ng-model="newComment.comment" ng-if="newComment.active")

@@ -141,6 +141,13 @@ body {
     line-height:32px;
     padding-left:24px;
     padding-right:24px;
+    &:last-of-type {
+        border-bottom: 1px dotted;
+    }
+    &.deleted .comment-content {
+        font-size:.9em;
+        color:$brand-danger;
+    }
     textarea {
         line-height:1.4em;
         width:100%;
@@ -162,9 +169,6 @@ body {
     }
     .comment-date {
         color:#666;
-    }
-    &:last-of-type {
-        border-bottom: 1px dotted;
     }
     .comment-edit {
         margin-left:12px;

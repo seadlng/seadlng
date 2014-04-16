@@ -37,9 +37,10 @@ angular.module('seadlngApp').controller 'IdeaCtrl', ($scope, $http, $routeParams
     unless comment.profile
       $http.get("/api/users/#{comment.owner}").success (data, status, headers, config) ->
         comment.profile = data.profile
-        comment.editable = comment.owner == $scope.user._id
+        comment.deleteable = comment.editable = comment.owner == $scope.user._id && !comment.deleted
+        comment.deleteable = true if $scope.user.role == "admin" and !comment.deleted
         comment.editStatus = "edit"
-        comment.edited = comment.created != comment.updated
+        comment.edited = comment.created != comment.updated && !comment.deleted
         comment.edit = ->
           comment.editing = !comment.editing
           if comment.editing
@@ -61,9 +62,18 @@ angular.module('seadlngApp').controller 'IdeaCtrl', ($scope, $http, $routeParams
             comment.editStatus = "cancel"
           else
             comment.editStatus = "submit"
+          comment.editable = comment.comment != ""
+
         comment.cancel = ->
           comment.comment = comment.original
           comment.edit()
+        comment.delete = ->
+          $http.delete("/api/ideas/#{$scope.ideas[0]._id}/comment/#{comment._id}").success((data, status, headers, config) ->
+            comment.editing = false
+            comment.deleted = true
+            comment.comment = data.comment
+            comment.editable = comment.deleteable = false
+          ).error(httpError)
 
   httpError = (data, status, headers, config) ->
     if data.error isnt undefined
