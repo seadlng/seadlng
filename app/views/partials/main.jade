@@ -2,17 +2,17 @@ div(ng-include='\'partials/navbar\'')
 alert(ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)") {{alert.msg}}
 
 form.form(name='form', ng-submit='submit()', novalidate='novalidate')
-
+  .col
       .form-group(ng-class='{"has-error": error.title}')
         i.fa.fa-search
         input.form-control(type='text', name='title', ng-model='idea.title')
       button.btn.btn-lg.btn-primary(type='submit')  Submit 
-
+  .col
       .form-group(ng-class='{"has-error": error.summary}')
         label Summary
         input.form-control(type='text', name='summary', ng-model='idea.summary')
       button.btn.btn-lg.btn-primary(type='submit')  Submit 
-        
+  .col
       .form-group(ng-class='{"has-error": error.tags}')
         label Tags
         input.form-control(type='text', name='tags', ng-model='tags')
