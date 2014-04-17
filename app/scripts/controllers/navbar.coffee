@@ -12,7 +12,7 @@ angular.module('seadlngApp')
       title: 'New Idea'
       link: '/idea/new'
     ]
-    $scope.redirect = "?r=#{$location.search().r}"
+    $scope.redirect = if $location.search().r then "?r=#{$location.search().r}" else ""
     current_location = $location.path()
     if current_location != '/signup' and current_location != '/' and current_location != '/login'
       $scope.redirect = "?r=#{current_location}"
