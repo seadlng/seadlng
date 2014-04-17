@@ -96,9 +96,12 @@ angular.module('seadlngApp').controller 'IdeaCtrl', ($scope, $http, $routeParams
         comment.delete = ->
           $http.delete("/api/ideas/#{$scope.ideas[0]._id}/comment/#{comment._id}").success((data, status, headers, config) ->
             comment.editing = false
-            comment.deleted = true
-            comment.comment = data.comment
-            comment.editable = comment.deleteable = false
+            if data.fullDelete
+              $scope.ideas[0].comments.splice $scope.ideas[0].comments.indexOf(comment)
+            else 
+              comment.deleted = true
+              comment.comment = data.comment
+              comment.editable = comment.deleteable = false
           ).error(httpError)
 
   httpError = (data, status, headers, config) ->
