@@ -1,23 +1,22 @@
 div(ng-include='\'partials/navbar\'')
+alert(ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)") {{alert.msg}}
+h1 Submit New Idea
+form.form(name='form', ng-submit='submit()', novalidate='novalidate')
 
-.jumbotron
-  h1
-    | 'Allo, 'Allo 
-    span(ng-show='currentUser') {{ currentUser.name }}
-    | !
+      .form-group(ng-class='{"has-error": error.title}')
+        label i.fa.fa-search
+        input.form-control(type='text', name='title', ng-model='idea.title')
+      button.btn.btn-lg.btn-primary(type='submit')  Submit 
 
-  p.lead
-    <img src="images/yeoman.png" alt="I'm Yeoman">
-    br
-    | Always a pleasure scaffolding your apps.
-  p
-    a.btn.btn-lg.btn-success(ng-href='#') Splendid!!
-  i.fa.fa-search
-    
-.row.marketing
-  div(ng-repeat='thing in awesomeThings')
-    h4 {{thing.name}}
-    p {{thing.info}}
+      .form-group(ng-class='{"has-error": error.summary}')
+        label Summary
+        input.form-control(type='text', name='summary', ng-model='idea.summary')
+      button.btn.btn-lg.btn-primary(type='submit')  Submit 
+        
+      .form-group(ng-class='{"has-error": error.tags}')
+        label Tags
+        input.form-control(type='text', name='tags', ng-model='tags')
+          .span.glyphicon.glyphicon-search
+      button.btn.btn-lg.btn-primary(type='submit')  Submit 
 
-.footer
-  p ♥ from the Yeoman team
+      span.clearfix
