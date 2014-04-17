@@ -1,9 +1,12 @@
 div(ng-include='\'partials/navbar\'')
 alert(ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)") {{alert.msg}}
 .row
-    .col-md-4 i.fa.fa-search
-    .col-md-4 i.fa.fa-leaf
-    .col-md-4 i.fa.fa-tasks
+    .col-md-4
+      i.fa.fa-search.fa-5
+    .col-md-4
+      i.fa.fa-leaf.fa-5
+    .col-md-4
+      i.fa.fa-tasks.fa-5
 //form.form(name='form', ng-submit='submit()', novalidate='novalidate')
 //  .col
 //      .form-group(ng-class='{"has-error": error.title}')
