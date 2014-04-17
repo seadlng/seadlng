@@ -4,7 +4,17 @@ alert(ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)") 
   h1 {{idea.title}}
     span.mergeStatus(ng-show='idea.root' ng-class='{merged: idea.branch_status.isMerged}') 
       | {{idea.branch_status.isMerged? "Merged" : "Unmerged"}}
-  .idea-summary {{idea.summary}}
+  .idea-summary
+    i.fa.fa-pencil(ng-if='idea.editable && !idea.edit.summary.editing' ng-click='idea.edit.summary.edit()')
+    .summary(ng-if="!idea.edit.summary.editing || idea.summary_lock") {{idea.summary}}
+    .appended
+      .comment(ng-repeat='append in idea.appended_summary') {{append}}
+    .form-group(ng-if="idea.edit.summary.editing")
+      textarea.form-control(msd-elastic rows="1" ng-if="!idea.summary_lock" ng-model="idea.summary")
+      textarea.form-control(msd-elastic rows="1" ng-if="idea.summary_lock" ng-model="idea.append")      
+      .comment-btns
+          button.btn.btn-comment.btn-primary(ng-click="idea.edit.summary.submit()" ng-if="idea.edit.summary.original != idea.summary || idea.edit.append.original != idea.append") Save
+          button.btn.btn-comment.btn-danger(ng-click="idea.edit.summary.cancel()") Cancel
     div(ng-show='(idea.root)&&(!idea.branch_status.isMerged)' ng-animate=" 'animate' ")
       progressbar(max="100" value="idea.votePercent")
       button.btn.btn-primary(ng-click='vote(idea)' btn-checkbox ng-model='idea.novote') Vote
@@ -25,10 +35,10 @@ alert(ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)") 
         a(href='/idea/{{branch._id}}') Link
         progressbar.small(max="100" value="branch.votePercent")
   .comments(ng-if="single")
-    h3 Comments
+    h3(ng-show="comments.length > 0") Comments
     .comment(ng-repeat="comment in comments" ng-class="{deleted: comment.deleted}")
       .comment-content(ng-if="!comment.editing") {{comment.comment}}
-      textarea(msd-elastic rows="1" ng-if="comment.editing" ng-model="comment.comment" ng-change="comment.change()")
+      textarea.form-control(msd-elastic rows="1" ng-if="comment.editing" ng-model="comment.comment" ng-change="comment.change()")
       .comment-owner 
         img(src="http://gravacat.trevorfenn.info/{{comment.profile.emailHash}}")
         a(href="/user/{{comment.owner}}") {{comment.profile.name}}

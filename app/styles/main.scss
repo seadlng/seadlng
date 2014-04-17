@@ -4,7 +4,9 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 $brand-primary: #7EA656;
 $brand-secondary: #8C765A;
 /*======End Variables and Mixins====*/
-@import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
+@import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap";
+$fa-font-path: "/bower_components/components-font-awesome/fonts";
+@import "components-font-awesome/scss/font-awesome";
 
 .browsehappy {
     margin: 0.2em 0;
@@ -107,12 +109,41 @@ body {
         color: white;
         padding:3px 6px;
         border-radius:4px;
-        background-color:$brand-primary;
+        background-color: $brand-primary;
         vertical-align: middle;
         margin-left: 12px;
         transition: background-color 1s;
         &.merged {
-            background-color:$brand-secondary;
+            background-color: $brand-secondary;
+        }
+    }
+    .idea-summary {
+        position: relative;
+
+        .summary {
+            margin-top:24px;
+            margin-bottom:12px;
+            padding-left:12px;
+        }
+
+        textarea {
+            margin-top:12px;
+            line-height:1.4em;
+            width:100%;
+            padding-left:8px;
+        }
+
+        i {
+            color: $link-color;
+            cursor: pointer;
+            position: absolute;
+            right: -20px;
+            top: 2px;
+
+            &:hover,
+            &:focus {
+                color: $link-hover-color;
+            }
         }
     }
 }

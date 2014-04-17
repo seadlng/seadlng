@@ -9,6 +9,32 @@ angular.module('seadlngApp').controller 'IdeaCtrl', ($scope, $http, $routeParams
     idea.novote = voted
     idea.mergedBranches = []
     idea.unmergedBranches = []
+    $http.get("/api/users/#{idea.owner}").success (data, status, headers, config) ->
+      idea.profile = data.profile
+      idea.deleteable = idea.editable = idea.owner == $scope.user._id
+      idea.deleteable = true if $scope.user.role == "admin"
+      idea.edited = idea.created != idea.updated
+      idea.edit = {}
+      idea.edit.summary = {}
+      idea.edit.append = {}
+      idea.edit.summary.editing = false
+      idea.edit.summary.edit = ->
+        idea.edit.summary.editing = !idea.edit.summary.editing
+        if idea.edit.summary.editing
+          idea.edit.summary.original = idea.summary
+          idea.edit.append.original = idea.append
+      idea.edit.summary.cancel = ->
+        idea.summary = idea.edit.summary.original
+        idea.append = ""
+        idea.edit.summary.edit()
+      idea.edit.summary.submit = ->
+        $http.put("/api/ideas/#{idea._id}",idea).success((data, status, headers, config) ->
+          idea.edit.summary.edit()
+          idea.edited = true
+          if idea.summary_lock
+            idea.appended_summary.push(idea.append)
+            idea.append = ""
+        ).error(httpError)
     for branch in idea.branches
       branch.votePercent = 0
       for vote in branch.branch_status.votes
