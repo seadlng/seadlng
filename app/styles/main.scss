@@ -224,3 +224,21 @@ body {
 .new-comment {
     margin-top:12px;
 }
+.navbar-toggle {
+    padding-top:0;
+    i {
+        background-color: $link-color;
+        color:white;
+        padding: 3px 6px;
+        border-radius: 4px;
+        &:hover,
+        &:focus {
+            background-color: $link-hover-color;
+        }
+    }
+}
+@media (max-width: 767px) {
+    .pull-right.nav-stacked {
+        float:none !important;
+    }
+}

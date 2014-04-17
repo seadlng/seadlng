@@ -1,11 +1,17 @@
 .header(ng-controller='NavbarCtrl')
-  ul.nav.nav-pills.pull-right
-    li(ng-repeat='item in menu', ng-class='{active: isActive(item.link)}')
-      a(ng-href='{{item.link}}') {{item.title}}
-    li(ng-hide='currentUser', ng-class='{active: isActive("/login")}')
-      a(href='/login{{redirect}}') Login
-    li(ng-hide='currentUser', ng-class='{active: isActive("/signup")}')
-      a(href='/signup{{redirect}}') Sign up
-    li(ng-show='currentUser', ng-class='{active: isActive("/logout")}')
-      a(href='', ng-click='logout()') Logout
-  h3.text-muted seadlng
+  .navbar-header
+    button.navbar-toggle(type="button" ng-click="isCollapsed = !isCollapsed")
+      span.sr-only Toggle navigation
+      i.fa.fa-bars.fa-2x
+    h3.text-muted seadlng
+  .collapse.navbar-collapse(collapse = "isCollapsed")
+    ul.nav.navbar-nav.nav-pills.pull-right.nav-stacked
+      li(ng-repeat='item in menu', ng-class='{active: isActive(item.link)}')
+        a(ng-href='{{item.link}}') {{item.title}}
+      li(ng-hide='currentUser', ng-class='{active: isActive("/login")}')
+        a(href='/login{{redirect}}') Login
+      li(ng-hide='currentUser', ng-class='{active: isActive("/signup")}')
+        a(href='/signup{{redirect}}') Sign up
+      li(ng-show='currentUser', ng-class='{active: isActive("/logout")}')
+        a(href='', ng-click='logout()') Logout
+  //h3.text-muted seadlng
