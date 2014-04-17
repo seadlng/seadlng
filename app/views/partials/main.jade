@@ -2,11 +2,14 @@ div(ng-include='\'partials/navbar\'')
 alert(ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)") {{alert.msg}}
 .row
     .col-md-4
-      i.fa.fa-search.fa-5x
+      a(href="")
+        i.fa.fa-search.fa-5x | SEARCH
     .col-md-4
-      i.fa.fa-leaf.fa-5x
+      a(href="")
+        i.fa.fa-leaf.fa-5x | CREATE
     .col-md-4
-      i.fa.fa-tasks.fa-5x
+      a(href="")
+        i.fa.fa-tasks.fa-5x | BROWSE
 //form.form(name='form', ng-submit='submit()', novalidate='novalidate')
 //  .col
 //      .form-group(ng-class='{"has-error": error.title}')
