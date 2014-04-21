@@ -97,10 +97,17 @@ body {
 }
 /*==========Ideas=============*/
 .idea {
-    margin: 0 auto 20px;
+    margin: 0 auto 2px;
     padding: 16px 32px;
     border: 2px solid $brand-secondary;
     border-radius:10px;
+    display: inline-block;
+    vertical-align: top;
+    width: 48%;
+    
+    &:nth-child(even) {
+      margin-left: 2%;
+    }
 
     &:hover,
     &:focus {
@@ -241,4 +248,10 @@ body {
     .pull-right.nav-stacked {
         float:none !important;
     }
+  .idea {
+    width: 100%;
+    &:nth-child(even) {
+      margin-left: 0%;
+    }
+  }
 }
