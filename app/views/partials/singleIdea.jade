@@ -3,7 +3,7 @@ h1
   span.mergeStatus(ng-show='idea.root' ng-class='{merged: idea.branch_status.isMerged}') 
     | {{idea.branch_status.isMerged? "Merged" : "Unmerged"}}
 .idea-summary
-  .idea-edit(ng-if="single")
+  .idea-edit(ng-if="idea.single")
     i.fa.fa-pencil(ng-if='idea.editable && !idea.edit.summary.editing' ng-click='idea.edit.summary.edit()')
     i.fa.fa-times.danger(ng-if="idea.deleteable && idea.mergedBranches.length === 0" ng-click='idea.delete()')        
   .summary(ng-if="!idea.edit.summary.editing || idea.summary_lock") {{idea.summary}}
@@ -17,7 +17,7 @@ h1
         button.btn.btn-comment.btn-danger(ng-click="idea.edit.summary.cancel()") Cancel
   div(ng-show='(idea.root)&&(!idea.branch_status.isMerged)' ng-animate=" 'animate' ")
     progressbar(max="100" value="idea.votePercent")
-    button.btn.btn-primary(ng-if="single" ng-click='vote(idea)' btn-checkbox ng-model='idea.novote') Vote
+    button.btn.btn-primary(ng-if="idea.single" ng-click='idea.vote()' btn-checkbox ng-model='idea.novote') Vote
 .root(ng-show='idea.root') 
   h2 Root
   a(href='/idea/{{idea.root._id}}') {{idea.root.title}}
@@ -34,7 +34,7 @@ h1
       p {{branch.summary}}
       a(href='/idea/{{branch._id}}') Link
       progressbar.small(max="100" value="branch.votePercent")
-.comments(ng-if="single")
+.comments(ng-if="idea.single")
   h3(ng-show="comments.length > 0") Comments
   .comment(ng-repeat="comment in comments" ng-class="{deleted: comment.deleted}")
     .comment-content(ng-if="!comment.editing") {{comment.comment}}
@@ -53,5 +53,5 @@ h1
       .comment-btns
         button.btn.btn-comment.btn-primary(ng-click="newComment.submit()" ng-if="newComment.active") Submit
         button.btn.btn-comment(ng-click="newComment.active = !newComment.active" ng-class="newComment.active ? 'btn-danger' : 'btn-primary'") {{newComment.active ? "Cancel" : "Comment"}}
-.new-branch(ng-if="single")
+.new-branch(ng-if="idea.single")
   button.btn.btn-primary(ng-click="idea.branchIt()") Branch
