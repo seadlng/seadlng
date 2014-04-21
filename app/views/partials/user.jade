@@ -1,0 +1,12 @@
+div(ng-include='\'partials/navbar.html\'')
+alert(ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)") {{alert.msg}}
+.profile
+  .info.clearfix
+    h1 {{user.name}}
+    img(src="http://gravacat.trevorfenn.info/{{user.emailHash}}")
+  .ideas
+    tabset
+      tab(heading="Ideas")
+        idea(ng-repeat="idea in user.ideas.ideas" idea="idea")
+      tab(heading="Following") 
+        idea(ng-repeat="idea in user.ideas.following" idea="idea")

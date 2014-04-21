@@ -1,7 +1,7 @@
 div(ng-include='\'partials/navbar.html\'')
 alert(ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)") {{alert.msg}}
 div
-  .idea(ng-repeat="idea in ideas" ng-class="{single: single}")
+  .idea(ng-repeat="idea in ideas" ng-class="{single: single || userPage}")
     h1 
       a(href="/idea/{{idea._id}}") {{idea.title}}
       span.mergeStatus(ng-show='idea.root' ng-class='{merged: idea.branch_status.isMerged}') 

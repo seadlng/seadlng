@@ -14,3 +14,9 @@ angular.module("seadlngApp")
         params:
           id: "me"
 
+      query:
+        method: "GET"
+        params:
+          id: '@id'
+        
+
