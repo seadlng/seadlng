@@ -42,7 +42,7 @@
       progressbar.small(max="100" value="branch.votePercent")
 .comments(ng-if="idea.single")
   h3(ng-show="comments.length > 0") Comments
-  .comment(ng-repeat="comment in comments" ng-class="{deleted: comment.deleted}")
+  .comment(ng-repeat="comment in idea.comments" ng-class="{deleted: comment.deleted}")
     .comment-content(ng-if="!comment.editing") {{comment.comment}}
     textarea.form-control(msd-elastic rows="1" ng-if="comment.editing" ng-model="comment.comment" ng-change="comment.change()")
     .comment-owner 
@@ -55,9 +55,9 @@
     a.comment-edit(ng-if="comment.deleteable" ng-click="comment.delete()") delete
   form.new-comment(role="form")
     .form-group
-      textarea.form-control(rows="2" msd-elastic ng-model="newComment.comment" ng-if="newComment.active")
+      textarea.form-control(rows="2" msd-elastic ng-model="idea.newComment.comment" ng-if="idea.newComment.active")
       .comment-btns
-        button.btn.btn-comment.btn-primary(ng-click="newComment.submit()" ng-if="newComment.active") Submit
-        button.btn.btn-comment(ng-click="newComment.active = !newComment.active" ng-class="newComment.active ? 'btn-danger' : 'btn-primary'") {{newComment.active ? "Cancel" : "Comment"}}
+        button.btn.btn-comment.btn-primary(ng-click="idea.newComment.submit()" ng-if="idea.newComment.active") Submit
+        button.btn.btn-comment(ng-click="idea.newComment.active = !idea.newComment.active" ng-class="idea.newComment.active ? 'btn-danger' : 'btn-primary'") {{idea.newComment.active ? "Cancel" : "Comment"}}
 .new-branch(ng-if="idea.single")
   button.btn.btn-primary(ng-click="idea.branchIt()") Branch
