@@ -97,10 +97,17 @@ body {
 }
 /*==========Ideas=============*/
 .idea {
-    margin: 0 auto 20px;
+    margin: 0 auto 2px;
     padding: 16px 32px;
     border: 2px solid $brand-secondary;
     border-radius:10px;
+    display: inline-block;
+    vertical-align: top;
+    width: 48%;
+    
+    &:nth-child(even) {
+      margin-left: 4%;
+    }
 
     &:hover,
     &:focus {
@@ -109,9 +116,25 @@ body {
                 opacity:1;
             }
         }
+        .delete-idea {
+            opacity:1;
+            transition: opacity .25s;
+        }
+    }
+    &.single {
+        width:100%;
     }
     h1 {
         margin-top:0px;
+        a {
+            &:hover,
+            &:focus {
+                text-decoration:none;
+            }
+        }
+    }
+    .delete-idea {
+        opacity:0;
     }
     .mergeStatus {
         font-size: .4em;
@@ -141,16 +164,25 @@ body {
             width:100%;
             padding-left:8px;
         }
+        .idea-edit {
+            position: absolute;
+            right: -20px;
+            top: 2px;
+        }
 
         i {
             opacity:0;
             color: $link-color;
             cursor: pointer;
-            position: absolute;
-            right: -20px;
-            top: 2px;
             transition: opacity .25s;
-
+            &.danger {
+                color: $brand-danger;
+                margin-left:6px;
+                &:hover,
+                &:focus {
+                color: darken($brand-danger, 15%);
+            }
+            }
             &:hover,
             &:focus {
                 color: $link-hover-color;
@@ -241,4 +273,10 @@ body {
     .pull-right.nav-stacked {
         float:none !important;
     }
+  .idea {
+    width: 100%;
+    &:nth-child(even) {
+      margin-left: 0%;
+    }
+  }
 }
