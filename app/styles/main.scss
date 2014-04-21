@@ -248,9 +248,9 @@ body {
     .pull-right.nav-stacked {
         float:none !important;
     }
-  .ideas {
+  .idea {
     width: 100%;
-    ideas:nth-child(even) {
+    .idea:nth-child(even) {
       margin-left: 0%;
     }
   }
