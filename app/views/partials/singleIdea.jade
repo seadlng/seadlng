@@ -5,9 +5,10 @@
       | {{idea.branch_status.isMerged? "Merged" : "Unmerged"}}
   .profile
     .info
-      img(src="http://gravacat.trevorfenn.info/{{idea.owner.emailHash}}")
-      h1 
-        a(href="/profile/{{idea.owner._id}}") {{idea.owner.name}}
+      a(href="/profile/{{idea.owner._id}}") 
+        img(src="http://gravacat.trevorfenn.info/{{idea.owner.emailHash}}")
+        h1 {{idea.owner.name}}
+        
 .idea-summary
   .idea-edit(ng-if="idea.single")
     i.fa.fa-pencil(ng-if='idea.editable && !idea.edit.summary.editing' ng-click='idea.edit.summary.edit()')
