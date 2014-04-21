@@ -102,6 +102,12 @@ body {
     border: 2px solid $brand-secondary;
     border-radius:10px;
     display: inline-block;
+    vertical-align: top;
+    width: 48%;
+    
+    .idea:nth-child(even) {
+      margin-left: 2%;
+    }
 
     &:hover,
     &:focus {
