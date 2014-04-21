@@ -104,10 +104,6 @@ body {
     display: inline-block;
     vertical-align: top;
     width: 48%;
-    
-    .idea:nth-child(even) {
-      margin-left: 2%;
-    }
 
     &:hover,
     &:focus {
@@ -164,6 +160,9 @@ body {
             }
         }
     }
+}
+.idea:nth-child(even) {
+  margin-left: 2%;
 }
 .progress.small {
     width:100px;
@@ -250,8 +249,8 @@ body {
     }
   .idea {
     width: 100%;
-    .idea:nth-child(even) {
-      margin-left: 0%;
-    }
+  }
+  .idea:nth-child(even) {
+    margin-left: 0%;
   }
 }
