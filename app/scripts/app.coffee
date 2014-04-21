@@ -41,7 +41,11 @@ angular.module('seadlngApp', [
         resolve: { 
           loadIdea: (Idea, $route) ->
             Idea.getAll($route.current.params.page,$route.current.params.per)
-        } 
+        }
+      .when '/idea/:id/new/branch',
+        templateUrl: 'partials/newidea',
+        controller: 'NewIdeaCtrl',
+        authenticate: true
       .otherwise
         redirectTo: '/'
 

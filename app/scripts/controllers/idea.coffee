@@ -47,6 +47,9 @@ angular.module('seadlngApp').controller 'IdeaCtrl', ($scope, $http, $routeParams
       $http.delete("/api/ideas/#{idea._id}").success((data, status, headers, config) ->
         $location.path "/ideas"
       ).error(httpError)
+    idea.branchIt = ->
+      console.log "/idea/#{idea._id}/new/branch"
+      $location.path "/idea/#{idea._id}/new/branch"
   mergeIdea = (idea) ->
     $http.put("/api/ideas/#{idea._id}/merge").success (data, status, headers, config) ->
       mergeStatus = data

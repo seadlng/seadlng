@@ -57,4 +57,7 @@ div
           .comment-btns
             button.btn.btn-comment.btn-primary(ng-click="newComment.submit()" ng-if="newComment.active") Submit
             button.btn.btn-comment(ng-click="newComment.active = !newComment.active" ng-class="newComment.active ? 'btn-danger' : 'btn-primary'") {{newComment.active ? "Cancel" : "Comment"}}
+    .new-branch(ng-if="single")
+      button.btn.btn-primary(ng-click="idea.branchIt()") Branch
+
 pagination(ng-if="numPages > 1" total-items="totalIdeas" page="page" max-size="5" class="pagination-sm" boundary-links="true" rotate="true" items-per-page="ideasPer" on-select-page = "switchPage(page)")

@@ -1,16 +1,12 @@
 'use strict'
 
 angular.module('seadlngApp')
-  .controller 'NewIdeaCtrl', ($scope, $http, $location) ->
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate'
-      'AngularJS'
-      'Karma'
-    ]
+  .controller 'NewIdeaCtrl', ($scope, $http, $location, $routeParams) ->
     
     $scope.idea = {
       title: "",
-      summary: ""
+      summary: "",
+      root: $routeParams.id
     }
     $scope.tags =  ""
     $scope.error = {}
@@ -31,3 +27,7 @@ angular.module('seadlngApp')
               type: "danger"
               msg: data.error
             console.log data.error
+    $scope.changeErr = ->
+      error = $scope.error.title = false if $scope.idea.title.length > 0
+      error = $scope.error.summary = false if $scope.idea.summary.length > 0
+      error = $scope.error.tags = false if $scope.tags.length > 0
