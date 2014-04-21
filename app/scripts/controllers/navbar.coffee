@@ -11,6 +11,9 @@ angular.module('seadlngApp')
     ,
       title: 'New Idea'
       link: '/idea/new'
+    ,
+      title: 'Browse Ideas'
+      link: '/ideas'
     ]
     $scope.redirect = if $location.search().r then "?r=#{$location.search().r}" else ""
     current_location = $location.path()
