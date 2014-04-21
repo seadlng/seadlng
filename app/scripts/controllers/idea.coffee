@@ -1,7 +1,9 @@
 'use strict'
 
 angular.module('seadlngApp').controller 'IdeaCtrl', ($scope, $http, $routeParams, $route, $timeout, $location, Idea, User) ->
-  getIdea = (idea) -> 
+  getIdea = (idea) ->
+    User.query({id: idea.owner}).$promise.then (data) ->
+      idea.owner = data.profile
     idea.votePercent = 0
     idea.single = true if $scope.single
     for vote in idea.branch_status.votes
