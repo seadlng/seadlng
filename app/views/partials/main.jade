@@ -1,38 +1,28 @@
 div(ng-include='\'partials/navbar\'')
 alert(ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)") {{alert.msg}}
-.row
-    .col-md-4
-      a(href="")
-        i.fa.fa-search.fa-4x  Search
-    .col-md-4
-      a(href="/idea/new")
-        i.fa.fa-leaf.fa-4x  Create
-    .col-md-4
-      a(href="ideas")
-        i.fa.fa-tasks.fa-4x  Browse
         
 .container
     .row.clearfix
         .col-md-12.column
           .row.clearfix
             .col-md-4.column
+              a(href="")
+                i.fa.fa-search.fa-4x  Search
               h2
-                | Heading
+                | Find that idea you've been looking for.
               p
-                | Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-              p
-                a.btn(href='#') View details »
+                | There are lots of ideas out there.  If you seek something new, cool, innovative, or just random the start here.
             .col-md-4.column
+              a(href="/idea/new")
+                i.fa.fa-leaf.fa-4x  Create
               h2
-                | Heading
+                | Give life to a new idea
               p
-                | Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-              p
-                a.btn(href='#') View details »
+                | Do you ever get the creative bug that just urges you to share your inspiration with the world?  Why not create an idea and incrementally improve on it?
             .col-md-4.column
+              a(href="ideas")
+                i.fa.fa-tasks.fa-4x  Browse
               h2
-                | Heading
+                | Check out the ideas out there.
               p
-                | Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-              p
-                a.btn(href='#') View details »
+                | Sometimes it's just nice to see what's out there.  Start here to browse without any specific interest or inspiration.
