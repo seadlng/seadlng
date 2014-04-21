@@ -21,7 +21,7 @@ div
             button.btn.btn-comment.btn-danger(ng-click="idea.edit.summary.cancel()") Cancel
       div(ng-show='(idea.root)&&(!idea.branch_status.isMerged)' ng-animate=" 'animate' ")
         progressbar(max="100" value="idea.votePercent")
-        button.btn.btn-primary(ng-click='vote(idea)' btn-checkbox ng-model='idea.novote') Vote
+        button.btn.btn-primary(ng-if="single" ng-click='vote(idea)' btn-checkbox ng-model='idea.novote') Vote
     .root(ng-show='idea.root') 
       h2 Root
       a(href='/idea/{{idea.root._id}}') {{idea.root.title}}
