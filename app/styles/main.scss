@@ -248,4 +248,10 @@ body {
     .pull-right.nav-stacked {
         float:none !important;
     }
+  .ideas {
+    width: 100%;
+    ideas:nth-child(even) {
+      margin-left: 0%;
+    }
+  }
 }
