@@ -1,8 +1,5 @@
 div(ng-include='\'partials/navbar\'')
-alert(ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)") {{alert.msg}}
-        
-a(href='https://github.com/seadlng/seadlng')
-    img(style='position: absolute; top: 0; left: 0; border: 0;', src='https://camo.githubusercontent.com/121cd7cbdc3e4855075ea8b558508b91ac463ac2/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677265656e5f3030373230302e706e67', alt='Fork me on GitHub', data-canonical-src='https://s3.amazonaws.com/github/ribbons/forkme_left_green_007200.png')
+alert(ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)") {{alert.msg}}   
 
 .container
     .row.clearfix
@@ -32,3 +29,17 @@ a(href='https://github.com/seadlng/seadlng')
                 | Check out the ideas out there.
               p
                 | Sometimes it's just nice to see what's out there.  Start here to browse without any specific interest or inspiration.
+    .home-extra.row.clearfix
+      .col-md-2.column
+      .col-md-8.column
+        .row.clearfix
+            .col-md-4.column
+              a(href="https://github.com/seadlng/seadlng/") 
+                i.fa.fa-github.fa-2x  Github Repo
+            .col-md-4.column
+              a(href="https://github.com/seadlng/seadlng/wiki") 
+                i.fa.fa-book.fa-2x  Wiki (Docs)
+            .col-md-4.column
+              a(href="https://github.com/seadlng/seadlng/issues") 
+                i.fa.fa-bug.fa-2x  Issue Tracker
+      .col-md-2.column
