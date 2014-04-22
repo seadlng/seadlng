@@ -12,7 +12,7 @@ form.form(name='form', ng-submit='submit()', novalidate='novalidate')
     
   .form-group(ng-class='{"has-error": error.tags}')
     label Tags
-    input.form-control(type='text', name='tags', ng-model='tags' ng-change="changeErr()")
+    input.form-control(type='text', name='tags', placeholder='Tags should be comma separated.  At least one tag is required.' ng-model='tags' ng-change="changeErr()")
 
   .form-group(ng-if="false")
     label Root Idea
