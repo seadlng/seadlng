@@ -338,6 +338,20 @@ module.exports = function (grunt) {
 
     // Copies remaining files to places other tasks can use
     copy: {
+      last: {
+        files: [{
+          dest: '<%= yeoman.dist %>/public/scripts/vendor.js',
+          src: [
+            '.tmp/concat/scripts/vendor.js'
+          ]
+        },
+        {
+          dest: '<%= yeoman.dist %>/public/scripts/scripts.js',
+          src: [
+            '.tmp/concat/scripts/scripts.js'
+          ]
+        }]
+      },
       dist: {
         files: [{
           expand: true,
@@ -564,6 +578,7 @@ module.exports = function (grunt) {
     'cdnify',
     'cssmin',
     'uglify',
+    'copy:last',
     'rev',
     'usemin'
   ]);
