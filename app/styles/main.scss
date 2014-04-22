@@ -96,7 +96,7 @@ body {
     }
 }
 /*==========Ideas=============*/
-.idea {
+.idea, idea {
     margin: 0 auto 24px;
     padding: 16px 32px;
     border: 2px solid $brand-secondary;
@@ -123,14 +123,54 @@ body {
     }
     &.single {
         width:100%;
-    }
-    h1 {
-        margin-top:0px;
-        a {
-            &:hover,
-            &:focus {
-                text-decoration:none;
+        .idea-head {
+            h1 {
+                display:inline-block;
             }
+            .profile {
+                display:inline-block;
+                float:right;
+                width:160px;
+                text-align:right;
+                .info {
+                    margin-top:0px;
+                    img {
+                        width:80px;
+                        float:right;
+                    }
+                    h1 {
+                        font-size:1.5em;
+                        margin-right:0;
+                    }
+                }
+                
+            }
+        }
+    }
+    .idea-head {
+        h1 {
+            margin-top:0px;
+            a {
+                &:hover,
+                &:focus {
+                    text-decoration:none;
+                }
+            }
+        }
+        .profile {
+            .info {
+                margin-top:0px;
+                img {
+                    width:64px;
+                    float:left
+                }
+                h1 {
+                    font-size:1.5em;
+                    margin-right:0;
+                    width:100%;
+                }
+            }
+            
         }
     }
     .delete-idea {
@@ -269,11 +309,36 @@ body {
         }
     }
 }
+.nav-tabs > li {
+    cursor:pointer;
+}
+.profile {
+    .info {
+        margin-top:24px;
+        h1, img {
+            display:inline-block;
+            vertical-align:top;
+        }
+        h1 {
+            margin-top:0px;
+            margin-right:24px;
+        }
+        img {
+            float:right;
+        }
+    }
+    .ideas {
+        margin-top:24px;
+        .nav-tabs {
+            margin-bottom:12px;
+        }
+    }
+}
 @media (max-width: 767px) {
     .pull-right.nav-stacked {
         float:none !important;
     }
-  .idea {
+  .idea, idea {
     width: 100%;
     &:nth-child(even) {
       margin-left: 0%;

@@ -16,7 +16,7 @@ angular.module('seadlngApp')
           password: $scope.user.password
         )
         .then ->
-          $location.path if path then path else '/'
+          $location.path if path then path else '/profile'
           $location.search('r',null)
           # Logged in, redirect to home
           #$location.path '/'

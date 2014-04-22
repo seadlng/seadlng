@@ -46,6 +46,23 @@ angular.module('seadlngApp', [
         templateUrl: 'partials/newidea',
         controller: 'NewIdeaCtrl',
         authenticate: true
+      .when '/profile',
+        templateUrl: 'partials/user',
+        controller: 'UserCtrl',
+        authenticate: true
+        resolve: {
+          loadUser: (User, $route) ->
+            User.get().$promise.then (data) ->
+              User.query({id:data._id}).$promise
+        }
+      .when '/profile/:id',
+        templateUrl: 'partials/user',
+        controller: 'UserCtrl',
+        authenticate: true
+        resolve: {
+          loadUser: (User, $route) ->
+            User.query({id:$route.current.params.id}).$promise
+        }
       .otherwise
         redirectTo: '/'
 
