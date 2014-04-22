@@ -334,7 +334,10 @@ body {
         }
     }
 }
-@media (max-width: 767px) {
+.dropdown-toggle {
+    cursor:pointer;
+}
+@media screen and (max-width: 767px) {
     .pull-right.nav-stacked {
         float:none !important;
     }

@@ -6,12 +6,23 @@
     h3.text-muted seadlng
   .collapse.navbar-collapse(collapse = "isCollapsed")
     ul.nav.navbar-nav.nav-pills.pull-right.nav-stacked
-      li(ng-repeat='item in menu', ng-class='{active: isActive(item.link)}')
-        a(ng-href='{{item.link}}') {{item.title}}
+      li(ng-repeat='item in menu', ng-class='{active: isActive(item.link), dropdown: item.dropdown}')
+        a.dropdown-toggle(ng-if="item.dropdown" ng-href='{{item.link}}') {{item.title}}
+        a(ng-if="!item.dropdown" ng-href='{{item.link}}') {{item.title}}
+        ul.dropdown-menu(ng-if="item.dropdown")
+          li(ng-repeat="ddItem in item.dropdown" ng-class='{active: isActive(ddItem.link)}')
+            a(ng-href='{{ddItem.link}}') {{ddItem.title}}
+      li.dropdown(ng-if="currentUser", ng-class='{active: isActive("/profile") || isActive("/settings")}')
+        a.dropdown-toggle {{currentUser.name}}
+        ul.dropdown-menu
+          li(ng-show='currentUser', ng-class='{active: isActive("/profile")}')
+            a(href='/profile') Profile
+          li(ng-show='currentUser', ng-class='{active: isActive("/settings")}')
+            a(href='/settings') Settings
+          li(ng-show='currentUser')
+            a(href='', ng-click='logout()') Logout
       li(ng-hide='currentUser', ng-class='{active: isActive("/login")}')
         a(href='/login{{redirect}}') Login
       li(ng-hide='currentUser', ng-class='{active: isActive("/signup")}')
         a(href='/signup{{redirect}}') Sign up
-      li(ng-show='currentUser', ng-class='{active: isActive("/logout")}')
-        a(href='', ng-click='logout()') Logout
   //h3.text-muted seadlng
