@@ -8,8 +8,8 @@
       a(href="/profile/{{idea.owner._id}}") 
         img(src="http://gravacat.trevorfenn.info/{{idea.owner.emailHash}}")
         h1 {{idea.owner.name}}
-        
-div
+.row     
+  .col-md-10.column
     .idea-summary
       .idea-edit(ng-if="idea.single")
         i.fa.fa-pencil(ng-if='idea.editable && !idea.edit.summary.editing' ng-click='idea.edit.summary.edit()')
@@ -61,8 +61,9 @@ div
           .comment-btns
             button.btn.btn-comment.btn-primary(ng-click="idea.newComment.submit()" ng-if="idea.newComment.active") Submit
             button.btn.btn-comment(ng-click="idea.newComment.active = !idea.newComment.active" ng-class="idea.newComment.active ? 'btn-danger' : 'btn-primary'") {{idea.newComment.active ? "Cancel" : "Comment"}}
-
-.btn.btn-success(ng-if="idea.single" ng-repeat="tag in idea.tags") {{tag}}
+  .tags.col-md-2.column
+    h3 Tags
+    .btn.btn-primary(ng-if="idea.single" ng-repeat="tag in idea.tags") {{tag}}
 
 .new-branch(ng-if="idea.single")
   button.btn.btn-primary(ng-click="idea.branchIt()") Branch
