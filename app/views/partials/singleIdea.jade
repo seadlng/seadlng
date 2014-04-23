@@ -62,7 +62,7 @@ div
             button.btn.btn-comment.btn-primary(ng-click="idea.newComment.submit()" ng-if="idea.newComment.active") Submit
             button.btn.btn-comment(ng-click="idea.newComment.active = !idea.newComment.active" ng-class="idea.newComment.active ? 'btn-danger' : 'btn-primary'") {{idea.newComment.active ? "Cancel" : "Comment"}}
 
-.btn.btn-success(ng-repeat="tag in idea.tags")
+.btn.btn-success(ng-if="idea.single" ng-repeat="tag in idea.tags") {{tag}}
 
 .new-branch(ng-if="idea.single")
   button.btn.btn-primary(ng-click="idea.branchIt()") Branch
