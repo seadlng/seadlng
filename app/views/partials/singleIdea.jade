@@ -61,9 +61,9 @@
           .comment-btns
             button.btn.btn-comment.btn-primary(ng-click="idea.newComment.submit()" ng-if="idea.newComment.active") Submit
             button.btn.btn-comment(ng-click="idea.newComment.active = !idea.newComment.active" ng-class="idea.newComment.active ? 'btn-danger' : 'btn-primary'") {{idea.newComment.active ? "Cancel" : "Comment"}}
-  .tags.col-md-2.column
+  .tags.col-md-2.column(ng-if="idea.single")
     h3 Tags
-    .btn.btn-primary(ng-if="idea.single" ng-repeat="tag in idea.tags") {{tag}}
+    .btn.btn-primary(ng-repeat="tag in idea.tags") {{tag}}
 
 .new-branch(ng-if="idea.single")
   button.btn.btn-primary(ng-click="idea.branchIt()") Branch
