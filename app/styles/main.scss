@@ -126,7 +126,6 @@ body {
         .idea-head {
             h1 {
                 display:inline-block;
-                word-break: break-word;
             }
             .profile {
                 display:inline-block;
@@ -151,6 +150,7 @@ body {
     .idea-head {
         h1 {
             margin-top:0px;
+            word-break: break-word;
             a {
                 &:hover,
                 &:focus {
