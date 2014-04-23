@@ -13,4 +13,3 @@ angular.module('seadlngApp').controller 'UserCtrl', ($scope, $route, User) ->
   for idea in $scope.user.ideas.favorites
   	User.query({id: idea.owner}).$promise.then (data) ->
       idea.owner = data.profile
-  console.log($scope.user)
