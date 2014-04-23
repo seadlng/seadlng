@@ -9,56 +9,60 @@
         img(src="http://gravacat.trevorfenn.info/{{idea.owner.emailHash}}")
         h1 {{idea.owner.name}}
         
-.idea-summary
-  .idea-edit(ng-if="idea.single")
-    i.fa.fa-pencil(ng-if='idea.editable && !idea.edit.summary.editing' ng-click='idea.edit.summary.edit()')
-    i.fa.fa-times.danger(ng-if="idea.deleteable && idea.mergedBranches.length === 0" ng-click='idea.delete()')        
-  .summary(ng-if="!idea.edit.summary.editing || idea.summary_lock") {{idea.summary}}
-  .appended
-    .comment(ng-repeat='append in idea.appended_summary') {{append}}
-  .form-group(ng-if="idea.edit.summary.editing")
-    textarea.form-control(msd-elastic rows="1" ng-if="!idea.summary_lock" ng-model="idea.summary")
-    textarea.form-control(msd-elastic rows="1" ng-if="idea.summary_lock" ng-model="idea.append")      
-    .comment-btns
-        button.btn.btn-comment.btn-primary(ng-click="idea.edit.summary.submit()" ng-if="idea.edit.summary.original != idea.summary || idea.edit.append.original != idea.append") Save
-        button.btn.btn-comment.btn-danger(ng-click="idea.edit.summary.cancel()") Cancel
-  div(ng-show='(idea.root)&&(!idea.branch_status.isMerged)' ng-animate=" 'animate' ")
-    progressbar(max="100" value="idea.votePercent")
-    button.btn.btn-primary(ng-if="idea.single" ng-click='idea.vote()' btn-checkbox ng-model='idea.novote') Vote
-.root(ng-show='idea.root') 
-  h2 Root
-  a(href='/idea/{{idea.root._id}}') {{idea.root.title}}
-.branches(ng-show='idea.mergedBranches.length + idea.unmergedBranches.length > 0')
-  h2 Branches
-  h3(ng-show='idea.mergedBranches.length > 0') Merged
-  accordion.mergedBranches(close-others="true")
-    accordion-group.branch(ng-repeat='branch in idea.mergedBranches' heading='{{branch.title}}')
-      p {{branch.summary}}
-      a(href='/idea/{{branch._id}}') Link
-  h3(ng-show='idea.unmergedBranches.length > 0') Unmerged
-  accordion.unmergedBranches(close-others="true")
-    accordion-group.branch(ng-repeat='branch in idea.unmergedBranches' heading='{{branch.title}}')
-      p {{branch.summary}}
-      a(href='/idea/{{branch._id}}') Link
-      progressbar.small(max="100" value="branch.votePercent")
-.comments(ng-if="idea.single")
-  h3(ng-show="comments.length > 0") Comments
-  .comment(ng-repeat="comment in idea.comments" ng-class="{deleted: comment.deleted}")
-    .comment-content(ng-if="!comment.editing") {{comment.comment}}
-    textarea.form-control(msd-elastic rows="1" ng-if="comment.editing" ng-model="comment.comment" ng-change="comment.change()")
-    .comment-owner 
-      img(src="http://gravacat.trevorfenn.info/{{comment.profile.emailHash}}")
-      a(href="/user/{{comment.owner}}") {{comment.profile.name}}
-    .comment-date &nbsp;&nbsp;&mdash;&nbsp;&nbsp;{{comment.created | date: 'short'}}
-    .comment-edited(ng-if="comment.edited") edited
-    a.comment-edit(ng-if="comment.editable" ng-click="comment.edit()") {{comment.editStatus}}
-    a.comment-edit(ng-if="comment.editable && comment.editStatus == 'submit'" ng-click="comment.cancel()") cancel
-    a.comment-edit(ng-if="comment.deleteable" ng-click="comment.delete()") delete
-  form.new-comment(role="form")
-    .form-group
-      textarea.form-control(rows="2" msd-elastic ng-model="idea.newComment.comment" ng-if="idea.newComment.active")
-      .comment-btns
-        button.btn.btn-comment.btn-primary(ng-click="idea.newComment.submit()" ng-if="idea.newComment.active") Submit
-        button.btn.btn-comment(ng-click="idea.newComment.active = !idea.newComment.active" ng-class="idea.newComment.active ? 'btn-danger' : 'btn-primary'") {{idea.newComment.active ? "Cancel" : "Comment"}}
+div
+    .idea-summary
+      .idea-edit(ng-if="idea.single")
+        i.fa.fa-pencil(ng-if='idea.editable && !idea.edit.summary.editing' ng-click='idea.edit.summary.edit()')
+        i.fa.fa-times.danger(ng-if="idea.deleteable && idea.mergedBranches.length === 0" ng-click='idea.delete()')        
+      .summary(ng-if="!idea.edit.summary.editing || idea.summary_lock") {{idea.summary}}
+      .appended
+        .comment(ng-repeat='append in idea.appended_summary') {{append}}
+      .form-group(ng-if="idea.edit.summary.editing")
+        textarea.form-control(msd-elastic rows="1" ng-if="!idea.summary_lock" ng-model="idea.summary")
+        textarea.form-control(msd-elastic rows="1" ng-if="idea.summary_lock" ng-model="idea.append")      
+        .comment-btns
+            button.btn.btn-comment.btn-primary(ng-click="idea.edit.summary.submit()" ng-if="idea.edit.summary.original != idea.summary || idea.edit.append.original != idea.append") Save
+            button.btn.btn-comment.btn-danger(ng-click="idea.edit.summary.cancel()") Cancel
+      div(ng-show='(idea.root)&&(!idea.branch_status.isMerged)' ng-animate=" 'animate' ")
+        progressbar(max="100" value="idea.votePercent")
+        button.btn.btn-primary(ng-if="idea.single" ng-click='idea.vote()' btn-checkbox ng-model='idea.novote') Vote
+    .root(ng-show='idea.root') 
+      h2 Root
+      a(href='/idea/{{idea.root._id}}') {{idea.root.title}}
+    .branches(ng-show='idea.mergedBranches.length + idea.unmergedBranches.length > 0')
+      h2 Branches
+      h3(ng-show='idea.mergedBranches.length > 0') Merged
+      accordion.mergedBranches(close-others="true")
+        accordion-group.branch(ng-repeat='branch in idea.mergedBranches' heading='{{branch.title}}')
+          p {{branch.summary}}
+          a(href='/idea/{{branch._id}}') Link
+      h3(ng-show='idea.unmergedBranches.length > 0') Unmerged
+      accordion.unmergedBranches(close-others="true")
+        accordion-group.branch(ng-repeat='branch in idea.unmergedBranches' heading='{{branch.title}}')
+          p {{branch.summary}}
+          a(href='/idea/{{branch._id}}') Link
+          progressbar.small(max="100" value="branch.votePercent")
+    .comments(ng-if="idea.single")
+      h3(ng-show="comments.length > 0") Comments
+      .comment(ng-repeat="comment in idea.comments" ng-class="{deleted: comment.deleted}")
+        .comment-content(ng-if="!comment.editing") {{comment.comment}}
+        textarea.form-control(msd-elastic rows="1" ng-if="comment.editing" ng-model="comment.comment" ng-change="comment.change()")
+        .comment-owner 
+          img(src="http://gravacat.trevorfenn.info/{{comment.profile.emailHash}}")
+          a(href="/user/{{comment.owner}}") {{comment.profile.name}}
+        .comment-date &nbsp;&nbsp;&mdash;&nbsp;&nbsp;{{comment.created | date: 'short'}}
+        .comment-edited(ng-if="comment.edited") edited
+        a.comment-edit(ng-if="comment.editable" ng-click="comment.edit()") {{comment.editStatus}}
+        a.comment-edit(ng-if="comment.editable && comment.editStatus == 'submit'" ng-click="comment.cancel()") cancel
+        a.comment-edit(ng-if="comment.deleteable" ng-click="comment.delete()") delete
+      form.new-comment(role="form")
+        .form-group
+          textarea.form-control(rows="2" msd-elastic ng-model="idea.newComment.comment" ng-if="idea.newComment.active")
+          .comment-btns
+            button.btn.btn-comment.btn-primary(ng-click="idea.newComment.submit()" ng-if="idea.newComment.active") Submit
+            button.btn.btn-comment(ng-click="idea.newComment.active = !idea.newComment.active" ng-class="idea.newComment.active ? 'btn-danger' : 'btn-primary'") {{idea.newComment.active ? "Cancel" : "Comment"}}
+
+.btn.btn-success(ng-repeat="tag in idea.tags")
+
 .new-branch(ng-if="idea.single")
   button.btn.btn-primary(ng-click="idea.branchIt()") Branch
