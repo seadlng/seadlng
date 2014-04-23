@@ -1,6 +1,6 @@
 {
   "name": "seadlng",
-  "version": "0.3.0",
+  "version": "0.3.5",
   "dependencies": {
     "angular": "1.2.11",
     "json3": "~3.2.6",
