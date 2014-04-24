@@ -150,6 +150,7 @@ body {
     .idea-head {
         h1 {
             margin-top:0px;
+            word-break: break-word;
             a {
                 &:hover,
                 &:focus {
@@ -340,8 +341,12 @@ body {
 .home-extra {
     margin-top:36px;
 }
-.tag {
-  
+.tags {
+  margin-bottom:12px;
+  .btn {
+    font-size: .8em;
+    padding: 2px 6px
+  }
 }
 @media screen and (max-width: 767px) {
     .pull-right.nav-stacked {
